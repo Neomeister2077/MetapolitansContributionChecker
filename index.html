@@ -3,18 +3,30 @@
 <body>
 <center><h3> Hello World !!! </h3></center>
 
-<h1>JavaScript Variables</h1>
-
-<p>In this example, x, y, and z are variables.</p>
-
-<p id="demo"></p>
-
 <script>
-var x = 5;
-var y = 6;
-var z = x + y;
-document.getElementById("demo").innerHTML =
-"The value of z is: " + z;
+
+var xhr = new XMLHttpRequest()
+
+xhr.open("GET", "https://cors-proxy.htmldriven.com/?url=https://etherscan.io/address/0xb4807d34f01c3Fe378418Cb5501b9BCf0e209D7f", true)
+xhr.responseType = "document";
+
+xhr.onload = function(){
+	if(xhr.readyState == 4 && xhr.status == 200)
+	{
+		var response = xhr.responseXML.querySelectorAll("div.col-md-4 mb-1 mb-md-0");
+		
+		console.log(response);
+	}
+
+};
+
+xhr.onerror = function()
+{
+	console.error(xhr.status, xhr.statusText);
+}
+
+xhr.send();
+
 </script>
 
 </body>
