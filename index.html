@@ -13,12 +13,21 @@
     <input type="text" id="text" placeholder="Enter anything in mind">
     <span id="output"></span>
         <script type="text/python" id="script1">
-            from browser import document
+            #from browser import document
 
-            def show_text(e):
-                document['output'].textContent = e.target.value;
+            #def show_text(e):
+            #    document['output'].textContent = e.target.value;
 
-            document['text'].bind('input', show_text)
+            #document['text'].bind('input', show_text)
+			
+			from selenium import webdriver
+			from selenium.webdriver.common.keys import Keys
+			
+			driver = webdriver.Chrome('./chromedriver')
+			
+			driver.get("https://www.python.org")
+			
+			print(driver.title)
         </script>
 </body>
 </html> 
