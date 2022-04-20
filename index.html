@@ -1,33 +1,24 @@
 <!DOCTYPE html>
-<html>
-<body>
-<center><h3> Hello World !!! </h3></center>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brython Examples</title>
 
-<script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython.js" integrity="sha256-rA89wPrTJJQFWJaZveKW8jpdmC3t5F9rRkPyBjz8G04=" crossorigin="anonymous"></script>
 
-var xhr = new XMLHttpRequest()
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython_stdlib.js" integrity="sha256-Gnrw9tIjrsXcZSCh/wos5Jrpn0bNVNFJuNJI9d71TDs=" crossorigin="anonymous"></script>
+</head>
+<body onload="brython()">
+    <input type="text" id="text" placeholder="Enter anything in mind">
+    <span id="output"></span>
+        <script type="text/python" id="script1">
+            from browser import document
 
-xhr.open("GET", "https://thingproxy.freeboard.io/fetch/https://etherscan.io/address/0xb4807d34f01c3Fe378418Cb5501b9BCf0e209D7f", true)
-xhr.responseType = "document";
+            def show_text(e):
+                document['output'].textContent = e.target.value;
 
-xhr.onload = function(){
-	if(xhr.readyState == 4 && xhr.status == 200)
-	{
-		var response = xhr.responseXML.querySelectorAll("div.col-md-4 mb-1 mb-md-0");
-		
-		console.log(response);
-	}
-
-};
-
-xhr.onerror = function()
-{
-	console.error(xhr.status, xhr.statusText);
-}
-
-xhr.send();
-
-</script>
-
+            document['text'].bind('input', show_text)
+        </script>
 </body>
-</html>
+</html> 
